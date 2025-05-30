@@ -1,0 +1,19 @@
+server:
+  port: 8123
+
+spring:
+  datasource:
+    url: jdbc:sqlserver://192.168.86.115:14331;databaseName=DSVSPDB;trustServerCertificate=true
+    username: simoms_DSVKPIM
+    password: QXywFE@MZ23s
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.SQLServerDialect
