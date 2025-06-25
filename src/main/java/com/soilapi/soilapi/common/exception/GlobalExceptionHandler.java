@@ -33,7 +33,7 @@ public class GlobalExceptionHandler {
         ));
     }
 
-    // 모든 예외 catch (최후의 방어선)
+    // 모든 예외 catch
     @ExceptionHandler(Exception.class)
     public ResponseEntity<?> handleAll(Exception ex) {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of(
