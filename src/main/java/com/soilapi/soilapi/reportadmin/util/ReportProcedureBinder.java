@@ -1,6 +1,7 @@
 package com.soilapi.soilapi.reportadmin.util;
 
 import com.soilapi.soilapi.reportadmin.dto.ReportAdminInsertRequest;
+import com.soilapi.soilapi.reportadmin.dto.ReportAdminSelectRequest;
 import com.soilapi.soilapi.reportadmin.dto.ReportAdminUpdateRequest;
 
 import jakarta.persistence.ParameterMode;
@@ -54,5 +55,22 @@ public class ReportProcedureBinder {
         query.setParameter("ETLJobName", dto.getEtlJobName());
         query.setParameter("UpdatedBy", dto.getUpdatedBy());
         query.setParameter("IsActive", dto.getIsActive());
+    }
+
+    public static void bindReportSelectParams(StoredProcedureQuery query, ReportAdminSelectRequest dto){
+        query.registerStoredProcedureParameter("PageNo", int.class, ParameterMode.IN)
+        .registerStoredProcedureParameter("PageSize", int.class, ParameterMode.IN)
+        .registerStoredProcedureParameter("OrderBy", String.class, ParameterMode.IN)
+        .registerStoredProcedureParameter("searchType", String.class, ParameterMode.IN)
+        .registerStoredProcedureParameter("searchKeyword", String.class, ParameterMode.IN)
+        .registerStoredProcedureParameter("isActive", String.class, ParameterMode.IN);
+        
+        query.setParameter("PageNo", dto.getPageNo())
+        .setParameter("PageSize", dto.getPageSize())
+        .setParameter("OrderBy", dto.getOrderBy())
+        .setParameter("searchType", dto.getSearchType())
+        .setParameter("searchKeyword", dto.getSearchKeyword())
+        .setParameter("isActive", dto.getIsActive());
+    
     }
 }

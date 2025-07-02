@@ -4,12 +4,15 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.soilapi.soilapi.kpikopadmin.dto.KpiKopAdminInsertRequest;
+import com.soilapi.soilapi.kpikopadmin.dto.KpiKopAdminSelectRequest;
+import com.soilapi.soilapi.kpikopadmin.dto.KpiKopAdminSelectResponse;
 import com.soilapi.soilapi.kpikopadmin.dto.KpiKopAdminUpdateRequest;
 import com.soilapi.soilapi.kpikopadmin.entity.KpiKopAdminEntity;
 import com.soilapi.soilapi.kpikopadmin.repository.KpiKopAdminRepository;
 import com.soilapi.soilapi.kpikopadmin.service.KpiKopAdminService;
 
 import lombok.RequiredArgsConstructor;
+
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -18,6 +21,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -69,5 +73,9 @@ public class KpiKopAdminController {
         kaService.updateKpiKopAdmin(request);
         return ResponseEntity.ok("KPI/KOP 수정 완료");
     }
-    
+
+    @GetMapping("/select")
+    public Page<KpiKopAdminSelectResponse> select(@ModelAttribute KpiKopAdminSelectRequest request){
+        return kaService.selectKpiKopAdmin(request);
+    }    
 }

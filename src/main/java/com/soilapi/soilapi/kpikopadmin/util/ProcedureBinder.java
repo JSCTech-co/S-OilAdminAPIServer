@@ -1,6 +1,7 @@
 package com.soilapi.soilapi.kpikopadmin.util;
 
 import com.soilapi.soilapi.kpikopadmin.dto.KpiKopAdminInsertRequest;
+import com.soilapi.soilapi.kpikopadmin.dto.KpiKopAdminSelectRequest;
 import com.soilapi.soilapi.kpikopadmin.dto.KpiKopAdminUpdateRequest;
 
 import jakarta.persistence.ParameterMode;
@@ -54,5 +55,20 @@ public class ProcedureBinder {
         query.setParameter("OverviewWidgetId", dto.getOverviewWidgetId());
         query.setParameter("UpdatedBy", dto.getUpdatedBy());
         query.setParameter("isActive", dto.getIsActive());
+    }
+    public static void binKpiKopAdminSelectParams(StoredProcedureQuery query, KpiKopAdminSelectRequest dto){
+        query.registerStoredProcedureParameter("pageNo", int.class, ParameterMode.IN)
+            .registerStoredProcedureParameter("pageSize", int.class, ParameterMode.IN)
+            .registerStoredProcedureParameter("orderBy", String.class, ParameterMode.IN)
+            .registerStoredProcedureParameter("searchType", String.class, ParameterMode.IN)
+            .registerStoredProcedureParameter("searchKeyword", String.class, ParameterMode.IN)
+            .registerStoredProcedureParameter("isActive", String.class, ParameterMode.IN);
+             
+        query.setParameter("pageNo", dto.getPageNo())
+            .setParameter("pageSize", dto.getPageSize())
+            .setParameter("orderBy", dto.getOrderBy())
+            .setParameter("searchType", dto.getSearchType())
+            .setParameter("searchKeyword", dto.getSearchKeyword())
+            .setParameter("isActive", dto.getIsActive());     
     }
 }

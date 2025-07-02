@@ -93,12 +93,14 @@ public class CompRoleDetailsService {
                 String compId = (String) row[0];
                 String compType = (String) row[1];
                 String compName = (String) row[2];
-                String mappingType = (String) row[3]; // 'MAPPED' or 'UNMAPPED'
+                String compNameKorean = (String) row[3];
+                String mappingType = (String) row[4]; // 'MAPPED' or 'UNMAPPED'
             
                 RoleToCompMappingListResponse.CompInfo comp = new RoleToCompMappingListResponse.CompInfo();
                 comp.setCompId(compId);
                 comp.setCompType(compType);
                 comp.setCompName(compName);
+                comp.setCompNameKorean(compNameKorean);
             
                 if ("MAPPED".equalsIgnoreCase(mappingType)) {
                     mappedList.add(comp);
@@ -143,7 +145,8 @@ public class CompRoleDetailsService {
                 response.setCompId((String) row[0]);
                 response.setCompType((String) row[1]);
                 response.setCompName((String) row[2]);
-                response.setRoleCount(((Number) row[3]).intValue());
+                response.setCompNameKorean((String) row[3]);
+                response.setRoleCount(((Number) row[4]).intValue());
                 return response;
             }).collect(Collectors.toList());
 
@@ -153,6 +156,8 @@ public class CompRoleDetailsService {
                 baseQuery += "AND CompId LIKE :searchKeyword ";
             } else if ("compType".equalsIgnoreCase(dto.getSearchType()) && dto.getSearchKeyword() != null) {
                 baseQuery += "AND CompType LIKE :searchKeyword ";
+            } else if ("compNameKorean".equalsIgnoreCase(dto.getSearchType()) && dto.getSearchKeyword() != null) {
+                baseQuery += "AND compNameKorean LIKE :searchKeyword ";
             } else if ("compName".equalsIgnoreCase(dto.getSearchType()) && dto.getSearchKeyword() != null) {
                 baseQuery += "AND compName LIKE :searchKeyword ";
             }

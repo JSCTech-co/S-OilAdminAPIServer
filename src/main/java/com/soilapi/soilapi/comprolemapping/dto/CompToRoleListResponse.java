@@ -7,5 +7,6 @@ public class CompToRoleListResponse {
     private String compId;
     private String compType;
     private String compName;
+    private String compNameKorean;
     private int roleCount;
 }

@@ -14,5 +14,6 @@ public class RoleToCompMappingListResponse {
         private String compId;
         private String compType;
         private String compName;
+        private String compNameKorean;
     }
 }

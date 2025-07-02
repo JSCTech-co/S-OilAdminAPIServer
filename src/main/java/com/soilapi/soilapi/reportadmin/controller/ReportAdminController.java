@@ -7,6 +7,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.soilapi.soilapi.reportadmin.dto.ReportAdminInsertRequest;
+import com.soilapi.soilapi.reportadmin.dto.ReportAdminSelectRequest;
+import com.soilapi.soilapi.reportadmin.dto.ReportAdminSelectResponse;
 import com.soilapi.soilapi.reportadmin.dto.ReportAdminUpdateRequest;
 import com.soilapi.soilapi.reportadmin.entity.ReportAdminEntity;
 import com.soilapi.soilapi.reportadmin.repository.ReportAdminRepository;
@@ -67,6 +70,11 @@ public class ReportAdminController {
     public ResponseEntity<String> update(@RequestBody ReportAdminUpdateRequest request) {
         raService.updateReportAdmin(request);
         return ResponseEntity.ok("Report 수정 완료");
+    }
+
+    @GetMapping("/select")
+    public Page<ReportAdminSelectResponse> select(@ModelAttribute ReportAdminSelectRequest request){
+        return raService.selectReportAdmin(request);
     }
     
 }
