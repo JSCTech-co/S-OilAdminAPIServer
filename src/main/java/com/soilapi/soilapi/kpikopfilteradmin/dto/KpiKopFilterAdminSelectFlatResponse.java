@@ -19,5 +19,6 @@ public class KpiKopFilterAdminSelectFlatResponse {
     private String filterObjId;           
     private Integer filterVariableOptionId;
     private String pageName;              
-    private String filterQlikId;          
+    private String filterQlikId;
+    private String fieldName;          
 }

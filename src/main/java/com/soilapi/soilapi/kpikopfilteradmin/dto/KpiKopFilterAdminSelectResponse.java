@@ -25,5 +25,6 @@ public class KpiKopFilterAdminSelectResponse {
         private Integer filterVariableOptionId;
         private String pageName;
         private String filterQlikId;
+        private String fieldName;
     }
 }

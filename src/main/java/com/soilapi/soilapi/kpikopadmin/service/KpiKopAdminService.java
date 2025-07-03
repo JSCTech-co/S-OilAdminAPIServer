@@ -92,7 +92,7 @@ public class KpiKopAdminService {
                 return response;
             }).collect(Collectors.toList());
 
-            String baseQuery = "SELECT COUNT(*) FROM vw_KPIKOPAdmin WHERE isActive = :isActive";
+            String baseQuery = "SELECT COUNT(*) FROM vw_KPIKOPAdmin WHERE isActive = :isActive ";
             if ("compId".equalsIgnoreCase(dto.getSearchType()) && StringUtils.hasText(dto.getSearchType()) ){
                 baseQuery += "AND compId LIKE :searchKeyword";
             }else if ("nameENG".equalsIgnoreCase(dto.getSearchType()) && StringUtils.hasText(dto.getSearchType()) ){

@@ -68,7 +68,6 @@ public class ReportAdminService {
             StoredProcedureQuery query = eManager.createStoredProcedureQuery("sg_SelectReportAdmin");
             ReportProcedureBinder.bindReportSelectParams(query, dto);
             query.execute();
-
             @SuppressWarnings("unchecked")
             List<Object[]> resultList = query.getResultList();
             List<ReportAdminSelectResponse> responseList = resultList.stream().map(row -> {
@@ -90,9 +89,9 @@ public class ReportAdminService {
             
             if ("compId".equalsIgnoreCase(dto.getSearchType()) && StringUtils.hasText(dto.getSearchType()) ){
                 baseQuery += " AND compId LIKE :searchKeyword";
-            }else if ("nameENG".equalsIgnoreCase(dto.getSearchType()) && StringUtils.hasText(dto.getSearchType()) ){
+            }else if ("compName".equalsIgnoreCase(dto.getSearchType()) && StringUtils.hasText(dto.getSearchType()) ){
                 baseQuery += " AND compName LIKE :searchKeyword";
-            }else if ("nameKOR".equalsIgnoreCase(dto.getSearchType()) && StringUtils.hasText(dto.getSearchType()) ){
+            }else if ("compNameKorean".equalsIgnoreCase(dto.getSearchType()) && StringUtils.hasText(dto.getSearchType()) ){
                 baseQuery += " AND compNameKorean LIKE :searchKeyword";
             }
 

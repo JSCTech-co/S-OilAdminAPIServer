@@ -13,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import com.soilapi.soilapi.kpikopfilteradmin.dto.KpiKopFilterAdminInsertRequest;
 import com.soilapi.soilapi.kpikopfilteradmin.dto.KpiKopFilterAdminSelectFlatResponse;
 import com.soilapi.soilapi.kpikopfilteradmin.dto.KpiKopFilterAdminSelectRequest;
 import com.soilapi.soilapi.kpikopfilteradmin.dto.KpiKopFilterAdminSelectResponse;
@@ -20,6 +21,7 @@ import com.soilapi.soilapi.kpikopfilteradmin.util.KpiKopFilterAdminProcedureBind
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.PersistenceException;
 import jakarta.persistence.Query;
 import jakarta.persistence.StoredProcedureQuery;
 
@@ -32,15 +34,11 @@ public class KpiKopFilterAdminService {
     public Page<KpiKopFilterAdminSelectResponse> selectKpiKopFilterAdmin(KpiKopFilterAdminSelectRequest dto){
         try{
             StoredProcedureQuery query = eManager.createStoredProcedureQuery("sg_SelectKpikopFilterAdmin");
-            System.out.println(dto);
-            System.out.println("searchType=[" + dto.getSearchType() + "]");
-            System.out.println("searchKeyword=[" + dto.getSearchKeyword() + "]");
             KpiKopFilterAdminProcedureBinder.bindKpiKopFilterAdminParams(query, dto);
             query.execute();
 
             @SuppressWarnings("unchecked")
             List<Object[]> resultList = query.getResultList();
-            System.out.println(resultList.size());
             List<KpiKopFilterAdminSelectFlatResponse> responseList = resultList.stream().map(row -> {
                 KpiKopFilterAdminSelectFlatResponse response = new KpiKopFilterAdminSelectFlatResponse();
                 response.setCompId((String)row[0]);
@@ -59,7 +57,8 @@ public class KpiKopFilterAdminService {
                 response.setFilterVariableOptionId(row[11] == null ? null : ((Number) row[11]).intValue());
                 response.setPageName((String)row[12]);
                 response.setFilterQlikId((String)row[13]);
-
+                response.setFieldName((String)row[14]);
+                
                 return response;
             }).collect(Collectors.toList());
 
@@ -92,6 +91,7 @@ public class KpiKopFilterAdminService {
                     filter.setFilterVariableOptionId(flat.getFilterVariableOptionId());
                     filter.setPageName(flat.getPageName());
                     filter.setFilterQlikId(flat.getFilterQlikId());
+                    filter.setFieldName(flat.getFieldName());
 
                     compMap.get(compId).getFilters().add(filter);
                 }
@@ -128,5 +128,20 @@ public class KpiKopFilterAdminService {
         }catch(Exception e){
             throw new RuntimeException("KPI/Kop Filter Select 중 문제 발생.", e);
         }
+    }
+
+    public void insertKpiKopFilterAdmin(KpiKopFilterAdminInsertRequest dto){
+        try{
+            StoredProcedureQuery query = eManager.createStoredProcedureQuery("sg_InsertKpikopFilterAdmin");
+            KpiKopFilterAdminProcedureBinder.bindKpiKopFilterAdminInsertParams(query, dto);
+            System.out.println(dto);
+            query.execute();
+        }catch(PersistenceException e){
+            throw new RuntimeException("Filter 저장 중 DB 오류 발생", e);
+
+        }catch(Exception e){
+            throw new RuntimeException("Filter 저장 중 예상치 못한 오류 발생", e);
+        }
+                
     }
 }
