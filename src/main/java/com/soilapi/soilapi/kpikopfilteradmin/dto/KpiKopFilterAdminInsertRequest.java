@@ -10,7 +10,8 @@ public class KpiKopFilterAdminInsertRequest {
     private String fieldName;                
     private String filterLabel;          
     private String widgetObjectId;           
-    private String filterObjID;             
+    private String filterObjId;
+    private String filterQlikId;             
     private Integer filterSequence;        
     private String pageName;               
 }

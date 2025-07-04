@@ -17,6 +17,7 @@ import com.soilapi.soilapi.kpikopfilteradmin.dto.KpiKopFilterAdminInsertRequest;
 import com.soilapi.soilapi.kpikopfilteradmin.dto.KpiKopFilterAdminSelectFlatResponse;
 import com.soilapi.soilapi.kpikopfilteradmin.dto.KpiKopFilterAdminSelectRequest;
 import com.soilapi.soilapi.kpikopfilteradmin.dto.KpiKopFilterAdminSelectResponse;
+import com.soilapi.soilapi.kpikopfilteradmin.dto.KpiKopFilterAdminUpdateRequest;
 import com.soilapi.soilapi.kpikopfilteradmin.util.KpiKopFilterAdminProcedureBinder;
 
 import jakarta.persistence.EntityManager;
@@ -144,4 +145,33 @@ public class KpiKopFilterAdminService {
         }
                 
     }
+
+    public void updateKpiKopFilterAdmin(KpiKopFilterAdminUpdateRequest dto){
+        try{
+            StoredProcedureQuery query = eManager.createStoredProcedureQuery("sg_UpdateKpikopFilterAdmin");
+            KpiKopFilterAdminProcedureBinder.bindKpiKopFilterAdminUpdateParams(query, dto);
+            System.out.println(dto);
+            query.execute();
+        }catch(PersistenceException e){
+            throw new RuntimeException("Filter 수정 중 DB 오류 발생", e);
+
+        }catch(Exception e){
+            throw new RuntimeException("Filter 수정 중 예상치 못한 오류 발생", e);
+        }           
+    }
+
+    public void deleteKpiKopFilterAdmin(int filterId){
+        try{
+            StoredProcedureQuery query = eManager.createStoredProcedureQuery("sg_DeleteKpikopFilterAdmin");
+            KpiKopFilterAdminProcedureBinder.bindKpiKopFilterAdminDeleteParams(query, filterId);
+            System.out.println(filterId);
+            query.execute();
+        }catch(PersistenceException e){
+            throw new RuntimeException("Filter 삭제 중 DB 오류 발생", e);
+
+        }catch(Exception e){
+            throw new RuntimeException("Filter 삭제 중 예상치 못한 오류 발생", e);
+        }      
+    }
+
 }

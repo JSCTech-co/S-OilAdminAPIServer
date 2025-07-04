@@ -2,6 +2,7 @@ package com.soilapi.soilapi.kpikopfilteradmin.util;
 
 import com.soilapi.soilapi.kpikopfilteradmin.dto.KpiKopFilterAdminInsertRequest;
 import com.soilapi.soilapi.kpikopfilteradmin.dto.KpiKopFilterAdminSelectRequest;
+import com.soilapi.soilapi.kpikopfilteradmin.dto.KpiKopFilterAdminUpdateRequest;
 
 import jakarta.persistence.ParameterMode;
 import jakarta.persistence.StoredProcedureQuery;
@@ -29,7 +30,8 @@ public class KpiKopFilterAdminProcedureBinder {
         query.registerStoredProcedureParameter("FieldName", String.class, ParameterMode.IN);
         query.registerStoredProcedureParameter("FilterLabel", String.class, ParameterMode.IN);
         query.registerStoredProcedureParameter("WidgetObjectId", String.class, ParameterMode.IN);
-        query.registerStoredProcedureParameter("FilterObjID", String.class, ParameterMode.IN);
+        query.registerStoredProcedureParameter("FilterObjId", String.class, ParameterMode.IN);
+        query.registerStoredProcedureParameter("FilterQlikId", String.class, ParameterMode.IN);
         query.registerStoredProcedureParameter("FilterSequence", Integer.class, ParameterMode.IN);
         query.registerStoredProcedureParameter("PageName", String.class, ParameterMode.IN);
 
@@ -39,8 +41,38 @@ public class KpiKopFilterAdminProcedureBinder {
         query.setParameter("FieldName", dto.getFieldName());
         query.setParameter("FilterLabel", dto.getFilterLabel());
         query.setParameter("WidgetObjectId", dto.getWidgetObjectId());
-        query.setParameter("FilterObjID", dto.getFilterObjID());
+        query.setParameter("FilterObjId", dto.getFilterObjId());
+        query.setParameter("FilterQlikId", dto.getFilterQlikId());
         query.setParameter("FilterSequence", dto.getFilterSequence());
         query.setParameter("PageName", dto.getPageName());
+    }
+
+    public static void bindKpiKopFilterAdminUpdateParams(StoredProcedureQuery query, KpiKopFilterAdminUpdateRequest dto){
+        query.registerStoredProcedureParameter("FilterID", Integer.class, ParameterMode.IN);
+        query.registerStoredProcedureParameter("FilterType", String.class, ParameterMode.IN);
+        query.registerStoredProcedureParameter("FilterName", String.class, ParameterMode.IN);
+        query.registerStoredProcedureParameter("FieldName", String.class, ParameterMode.IN);
+        query.registerStoredProcedureParameter("FilterLabel", String.class, ParameterMode.IN);
+        query.registerStoredProcedureParameter("WidgetObjectId", String.class, ParameterMode.IN);
+        query.registerStoredProcedureParameter("FilterObjId", String.class, ParameterMode.IN);
+        query.registerStoredProcedureParameter("FilterQlikId", String.class, ParameterMode.IN);
+        query.registerStoredProcedureParameter("FilterSequence", Integer.class, ParameterMode.IN);
+        query.registerStoredProcedureParameter("PageName", String.class, ParameterMode.IN);
+
+        query.setParameter("FilterID", dto.getFilterId());
+        query.setParameter("FilterType", dto.getFilterType());
+        query.setParameter("FilterName", dto.getFilterName());
+        query.setParameter("FieldName", dto.getFieldName());
+        query.setParameter("FilterLabel", dto.getFilterLabel());
+        query.setParameter("WidgetObjectId", dto.getWidgetObjectId());
+        query.setParameter("FilterObjId", dto.getFilterObjId());
+        query.setParameter("FilterQlikId", dto.getFilterQlikId());
+        query.setParameter("FilterSequence", dto.getFilterSequence());
+        query.setParameter("PageName", dto.getPageName());
+    }
+
+    public static void bindKpiKopFilterAdminDeleteParams(StoredProcedureQuery query, int filterId){
+        query.registerStoredProcedureParameter("FilterId", Integer.class, ParameterMode.IN);
+        query.setParameter("FilterId", filterId);
     }
 }
