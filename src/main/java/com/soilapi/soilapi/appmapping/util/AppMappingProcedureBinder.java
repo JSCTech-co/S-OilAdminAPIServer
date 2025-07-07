@@ -1,8 +1,12 @@
 package com.soilapi.soilapi.appmapping.util;
 
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+
 import com.soilapi.soilapi.appmapping.dto.AppMasterInsertRequest;
 import com.soilapi.soilapi.appmapping.dto.AppMasterListRequest;
 import com.soilapi.soilapi.appmapping.dto.AppMasterUpdateRequest;
+import com.soilapi.soilapi.appmapping.dto.AppToCompModifyRequest;
 
 import jakarta.persistence.ParameterMode;
 import jakarta.persistence.StoredProcedureQuery;
@@ -42,5 +46,27 @@ public class AppMappingProcedureBinder {
         .setParameter("appName", dto.getAppName())
         .setParameter("appId", dto.getAppId())
         .setParameter("appType", dto.getAppType());
+    }
+
+    public static void bindAppToCompMappingListParams(StoredProcedureQuery query, int aid){
+        query.registerStoredProcedureParameter("aid", int.class, ParameterMode.IN);
+
+        query.setParameter("aid", aid);
+    }
+
+    public static void bindAppToCompMappingModifyParams(StoredProcedureQuery query, AppToCompModifyRequest dto){
+        String addList = (dto.getAddList() != null && !dto.getAddList().isEmpty())?
+        dto.getAddList().stream().map(String::valueOf).collect(Collectors.joining(",")):null;
+        String removeList  = (dto.getRemoveList() != null && !dto.getRemoveList().isEmpty())?
+        dto.getRemoveList().stream().map(String::valueOf).collect(Collectors.joining(",")):null;
+        
+        
+        query.registerStoredProcedureParameter("aid", int.class, ParameterMode.IN)
+        .registerStoredProcedureParameter("addList", String.class, ParameterMode.IN)
+        .registerStoredProcedureParameter("removeList", String.class, ParameterMode.IN);
+
+        query.setParameter("aid", dto.getAid())
+        .setParameter("addList", addList)
+        .setParameter("removeList", removeList);
     }
 }
