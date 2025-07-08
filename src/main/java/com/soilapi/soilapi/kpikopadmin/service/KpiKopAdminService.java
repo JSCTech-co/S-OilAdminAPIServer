@@ -100,6 +100,8 @@ public class KpiKopAdminService {
             }else if ("nameKOR".equalsIgnoreCase(dto.getSearchType()) && StringUtils.hasText(dto.getSearchType()) ){
                 baseQuery += "AND NAME_KOR LIKE :searchKeyword";
             }
+            
+            // SELECT COUNT(*) FROM vw_KPIKOPAdmin WHERE isActive = 'Y' AND NAME_KOR LIKE '%key%'
 
             Query countQuery = eManager.createNativeQuery(baseQuery);
             if(StringUtils.hasText(dto.getIsActive())){

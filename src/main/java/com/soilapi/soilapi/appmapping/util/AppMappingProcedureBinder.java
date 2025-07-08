@@ -1,6 +1,5 @@
 package com.soilapi.soilapi.appmapping.util;
 
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import com.soilapi.soilapi.appmapping.dto.AppMasterInsertRequest;
@@ -29,23 +28,27 @@ public class AppMappingProcedureBinder {
     public static void bindAppMasterInsertParams(StoredProcedureQuery query, AppMasterInsertRequest dto){
         query.registerStoredProcedureParameter("appName", String.class, ParameterMode.IN)
         .registerStoredProcedureParameter("appId", String.class, ParameterMode.IN)
-        .registerStoredProcedureParameter("appType", String.class, ParameterMode.IN);
+        .registerStoredProcedureParameter("appType", String.class, ParameterMode.IN)
+        .registerStoredProcedureParameter("qlikAppName", String.class, ParameterMode.IN);
 
         query.setParameter("appName", dto.getAppName())
         .setParameter("appId", dto.getAppId())
-        .setParameter("appType", dto.getAppType());
+        .setParameter("appType", dto.getAppType())
+        .setParameter("qlikAppName", dto.getQlikAppName());
     }
 
     public static void bindAppMasterUpdateParams(StoredProcedureQuery query, AppMasterUpdateRequest dto){
         query.registerStoredProcedureParameter("aid", int.class, ParameterMode.IN)
         .registerStoredProcedureParameter("appName", String.class, ParameterMode.IN)
         .registerStoredProcedureParameter("appId", String.class, ParameterMode.IN)
-        .registerStoredProcedureParameter("appType", String.class, ParameterMode.IN);
+        .registerStoredProcedureParameter("appType", String.class, ParameterMode.IN)
+        .registerStoredProcedureParameter("qlikAppName", String.class, ParameterMode.IN);
 
         query.setParameter("aid", dto.getAid())
         .setParameter("appName", dto.getAppName())
         .setParameter("appId", dto.getAppId())
-        .setParameter("appType", dto.getAppType());
+        .setParameter("appType", dto.getAppType())
+        .setParameter("qlikAppName", dto.getQlikAppName());
     }
 
     public static void bindAppToCompMappingListParams(StoredProcedureQuery query, int aid){

@@ -7,4 +7,5 @@ public class AppMasterInsertRequest {
     private String appName;
     private String appId;
     private String appType;
+    private String qlikAppName;
 }

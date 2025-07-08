@@ -20,7 +20,7 @@ import com.soilapi.soilapi.appmapping.dto.AppToCompMappingListResponse;
 import com.soilapi.soilapi.appmapping.dto.AppToCompModifyRequest;
 import com.soilapi.soilapi.appmapping.dto.AppToCompMappingListResponse.AppToCompInfo;
 import com.soilapi.soilapi.appmapping.util.AppMappingProcedureBinder;
-import com.soilapi.soilapi.comprolemapping.util.CompRoleDetailsProcedureBinder;
+
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -45,8 +45,9 @@ public class AppMappingService {
             response.setAid(((Number) row[0]).intValue());
             response.setAppName((String) row[1]);
             response.setAppId((String) row[2]);
-            response.setAppType((String) row[3]);
-            response.setCompCount(((Number) row[4]).intValue());
+            response.setQlikAppName((String) row[3]);
+            response.setAppType((String) row[4]);
+            response.setCompCount(((Number) row[5]).intValue());
             return response;
         }).collect(Collectors.toList());
 
