@@ -81,14 +81,15 @@ public class KpiKopAdminService {
                 KpiKopAdminSelectResponse response = new KpiKopAdminSelectResponse();
                 response.setCid(((Number) row[0]).intValue());
                 response.setCompId((String)row[1]);
-                response.setNameENG((String)row[2]);
-                response.setNameKOR((String)row[3]);
-                response.setWidgetObjectId((String)row[4]);
-                response.setOverviewWidgetId((String)row[5]);
-                response.setUom((String)row[6]);
-                response.setUomKorean((String)row[7]);
-                response.setETLJobName((String)row[8]);
-                response.setIsActive((char)row[9]);
+                response.setCompType((String)row[2]);
+                response.setNameENG((String)row[3]);
+                response.setNameKOR((String)row[4]);
+                response.setWidgetObjectId((String)row[5]);
+                response.setOverviewWidgetId((String)row[6]);
+                response.setUom((String)row[7]);
+                response.setUomKorean((String)row[8]);
+                response.setETLJobName((String)row[9]);
+                response.setIsActive((char)row[10]);
                 return response;
             }).collect(Collectors.toList());
 

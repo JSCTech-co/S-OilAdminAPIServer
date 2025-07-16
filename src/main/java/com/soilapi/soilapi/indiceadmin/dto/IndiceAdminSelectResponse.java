@@ -1,18 +1,19 @@
-package com.soilapi.soilapi.kpikopadmin.dto;
+package com.soilapi.soilapi.indiceadmin.dto;
 
 import lombok.Data;
 
 @Data
-public class KpiKopAdminSelectResponse {
+public class IndiceAdminSelectResponse {
     private int cid;
     private String compId;
     private String compType;
     private String nameENG;
     private String nameKOR;
-    private String widgetObjectId;
-    private String overviewWidgetId;
+    private String currentMonth;
+    private String flag;
+    private String secondaryName;
+    private String secondaryValue;
     private String uom;
     private String uomKorean;
     private String ETLJobName;
-    private char isActive;
 }
