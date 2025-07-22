@@ -3,18 +3,17 @@ package com.soilapi.soilapi.indiceadmin.dto;
 import lombok.Data;
 
 @Data
-public class IndiceAdminSelectResponse {
-    private int cid;
+public class IndiceAdminUpdateRequest {
     private String compId;
     private String compType;
-    private String nameEng;
     private String nameKor;
+    private String nameEng;
     private String currentMonth;
     private String flag;
-    private String secondaryName;
     private String secondaryValue;
+    private String secondaryName;
     private String uom;
     private String uomKorean;
-    private String EtlJobName;
-    private char isActive;
+    private String etlJobName;
+    private String isActive;
 }

@@ -9,4 +9,5 @@ public class IndiceAdminSelectRequest {
     private String orderBy = "compId";
     private String searchType;
     private String searchKeyword;
+    private String isActive;
 }
