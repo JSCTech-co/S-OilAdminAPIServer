@@ -37,34 +37,43 @@ public class CompRoleDetailsProcedureBinder {
         String addedKPI = null;
         String addedKOP = null;
         String addedReport = null;
+        String addedIndice = null;
 
         String removedKPI = null;
         String removedKOP = null;
         String removedReport = null;
+        String removedIndice = null;
+
   
         addedKPI = String.join(",", dto.getAddedList().getOrDefault("KPI", List.of()));
         addedKOP = String.join(",", dto.getAddedList().getOrDefault("KOP", List.of()));
         addedReport = String.join(",", dto.getAddedList().getOrDefault("Report", List.of()));
-
+        addedIndice = String.join(",", dto.getAddedList().getOrDefault("Indice", List.of()));
+        
         removedKPI = String.join(",", dto.getRemovedList().getOrDefault("KPI", List.of()));
         removedKOP = String.join(",", dto.getRemovedList().getOrDefault("KOP", List.of()));
         removedReport = String.join(",", dto.getRemovedList().getOrDefault("Report", List.of()));
+        removedIndice = String.join(",", dto.getRemovedList().getOrDefault("Indice", List.of()));
 
         query.registerStoredProcedureParameter("roleId", int.class, ParameterMode.IN);
         query.registerStoredProcedureParameter("addedKPI", String.class, ParameterMode.IN);
         query.registerStoredProcedureParameter("addedKOP", String.class, ParameterMode.IN);
         query.registerStoredProcedureParameter("addedReport", String.class, ParameterMode.IN);
+        query.registerStoredProcedureParameter("addedIndice", String.class, ParameterMode.IN);
         query.registerStoredProcedureParameter("removedKPI", String.class, ParameterMode.IN);
         query.registerStoredProcedureParameter("removedKOP", String.class, ParameterMode.IN);
         query.registerStoredProcedureParameter("removedReport", String.class, ParameterMode.IN);
+        query.registerStoredProcedureParameter("removedIndice", String.class, ParameterMode.IN);
 
         query.setParameter("roleId", dto.getRoleId());
         query.setParameter("addedKPI", addedKPI);
         query.setParameter("addedKOP", addedKOP);
         query.setParameter("addedReport", addedReport);
+        query.setParameter("addedIndice", addedIndice);
         query.setParameter("removedKPI", removedKPI);
         query.setParameter("removedKOP", removedKOP);
         query.setParameter("removedReport", removedReport);
+        query.setParameter("removedIndice", removedIndice);
 
 
     }
