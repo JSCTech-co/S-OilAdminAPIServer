@@ -6,8 +6,8 @@ import com.soilapi.soilapi.overview.dto.OverviewSelectIndiceListRequest;
 import com.soilapi.soilapi.overview.dto.OverviewSelectIndiceListResponse;
 import com.soilapi.soilapi.overview.dto.OverviewSelectWidgetListRequest;
 import com.soilapi.soilapi.overview.dto.OverviewSelectWidgetListResponse;
-import com.soilapi.soilapi.overview.dto.OvierviewUpdateIndiceRequest;
-import com.soilapi.soilapi.overview.dto.OvierviewUpdateWidgetRequest;
+import com.soilapi.soilapi.overview.dto.OverviewUpdateIndiceRequest;
+import com.soilapi.soilapi.overview.dto.OverviewUpdateWidgetRequest;
 import com.soilapi.soilapi.overview.service.OverviewService;
 
 
@@ -47,13 +47,13 @@ public class OverviewController {
     }
 
     @PostMapping("/updateWidget")
-    public ResponseEntity<String> updateWidget(@RequestBody OvierviewUpdateWidgetRequest dto){
+    public ResponseEntity<String> updateWidget(@RequestBody OverviewUpdateWidgetRequest dto){
         overviewService.updateWidget(dto);
         return ResponseEntity.ok("OveriveWidget Update 완료.");
     }
 
     @PostMapping("/updateIndice")
-    public ResponseEntity<String> updateIndice(@RequestBody OvierviewUpdateIndiceRequest dto){
+    public ResponseEntity<String> updateIndice(@RequestBody OverviewUpdateIndiceRequest dto){
         overviewService.updateIndice(dto);
         return ResponseEntity.ok("OveriveIndice Update 완료.");
     }

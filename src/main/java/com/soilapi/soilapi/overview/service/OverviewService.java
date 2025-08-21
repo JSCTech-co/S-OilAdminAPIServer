@@ -7,8 +7,8 @@ import com.soilapi.soilapi.overview.dto.OverviewSelectIndiceListRequest;
 import com.soilapi.soilapi.overview.dto.OverviewSelectIndiceListResponse;
 import com.soilapi.soilapi.overview.dto.OverviewSelectWidgetListRequest;
 import com.soilapi.soilapi.overview.dto.OverviewSelectWidgetListResponse;
-import com.soilapi.soilapi.overview.dto.OvierviewUpdateIndiceRequest;
-import com.soilapi.soilapi.overview.dto.OvierviewUpdateWidgetRequest;
+import com.soilapi.soilapi.overview.dto.OverviewUpdateIndiceRequest;
+import com.soilapi.soilapi.overview.dto.OverviewUpdateWidgetRequest;
 import com.soilapi.soilapi.overview.util.OverviewProcedureBinder;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -158,7 +158,7 @@ public class OverviewService {
         }
     }
 
-    public void updateWidget(OvierviewUpdateWidgetRequest dto){
+    public void updateWidget(OverviewUpdateWidgetRequest dto){
         try{
             System.out.println(dto);
             StoredProcedureQuery query = eManager.createStoredProcedureQuery("sg_OverviewUpdateWidget");
@@ -169,7 +169,7 @@ public class OverviewService {
         }
     }
 
-    public void updateIndice(OvierviewUpdateIndiceRequest dto){
+    public void updateIndice(OverviewUpdateIndiceRequest dto){
         try{
             System.out.println(dto);
             StoredProcedureQuery query = eManager.createStoredProcedureQuery("sg_OverviewUpdateIndice");

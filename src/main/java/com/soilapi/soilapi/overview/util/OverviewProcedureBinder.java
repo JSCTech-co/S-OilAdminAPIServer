@@ -3,8 +3,8 @@ package com.soilapi.soilapi.overview.util;
 import com.soilapi.soilapi.overview.dto.OverviewListRequest;
 import com.soilapi.soilapi.overview.dto.OverviewSelectIndiceListRequest;
 import com.soilapi.soilapi.overview.dto.OverviewSelectWidgetListRequest;
-import com.soilapi.soilapi.overview.dto.OvierviewUpdateIndiceRequest;
-import com.soilapi.soilapi.overview.dto.OvierviewUpdateWidgetRequest;
+import com.soilapi.soilapi.overview.dto.OverviewUpdateIndiceRequest;
+import com.soilapi.soilapi.overview.dto.OverviewUpdateWidgetRequest;
 
 import jakarta.persistence.ParameterMode;
 import jakarta.persistence.StoredProcedureQuery;
@@ -41,7 +41,7 @@ public class OverviewProcedureBinder {
         query.setParameter("orderBy", dto.getOrderBy());
     }
 
-    public static void bindOverviewUpdateWidgetParams(StoredProcedureQuery query, OvierviewUpdateWidgetRequest dto){
+    public static void bindOverviewUpdateWidgetParams(StoredProcedureQuery query, OverviewUpdateWidgetRequest dto){
         query.registerStoredProcedureParameter("roleId", Integer.class, ParameterMode.IN);
         query.registerStoredProcedureParameter("cid", Integer.class, ParameterMode.IN);
         query.registerStoredProcedureParameter("widgetOrder", Integer.class, ParameterMode.IN);
@@ -51,7 +51,7 @@ public class OverviewProcedureBinder {
         query.setParameter("widgetOrder", dto.getWidgetOrder());
     }
 
-    public static void bindOverviewUpdateIndiceParams(StoredProcedureQuery query, OvierviewUpdateIndiceRequest dto){
+    public static void bindOverviewUpdateIndiceParams(StoredProcedureQuery query, OverviewUpdateIndiceRequest dto){
         query.registerStoredProcedureParameter("roleId", Integer.class, ParameterMode.IN);
         query.registerStoredProcedureParameter("cid", Integer.class, ParameterMode.IN);
         query.registerStoredProcedureParameter("widgetOrder", Integer.class, ParameterMode.IN);

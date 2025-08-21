@@ -3,7 +3,7 @@ package com.soilapi.soilapi.overview.dto;
 import lombok.Data;
 
 @Data
-public class OvierviewUpdateIndiceRequest {
+public class OverviewUpdateIndiceRequest {
     int roleId;
     int cid;
     int widgetOrder;
